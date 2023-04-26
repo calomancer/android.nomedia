@@ -5,7 +5,7 @@
     "minAppVersion": "0.0.1",
     "description": "This plugin adds the a file with the nomedia extension to every folder. This special file tells the Android OS that there's no media in the folder which will hide the content from Media pickers.",
     "author": "jakeisawesome",
-    "authorUrl": "https://obsidian.md",
-    "fundingUrl": "https://obsidian.md/pricing",
+    "authorUrl": "https://www.jakeisawesome.com",
+    "fundingUrl": "",
     "isDesktopOnly": false
 }
