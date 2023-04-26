@@ -1,11 +1,11 @@
 {
-	"id": "obsidian-sample-plugin",
-	"name": "Sample Plugin",
-	"version": "1.0.0",
-	"minAppVersion": "0.15.0",
-	"description": "This is a sample plugin for Obsidian. This plugin demonstrates some of the capabilities of the Obsidian API.",
-	"author": "Obsidian",
-	"authorUrl": "https://obsidian.md",
-	"fundingUrl": "https://obsidian.md/pricing",
-	"isDesktopOnly": false
+    "id": "obsidian-nomedia",
+    "name": "Obsidian nomedia",
+    "version": "1.0.0",
+    "minAppVersion": "0.0.1",
+    "description": "This plugin adds the a file with the nomedia extension to every folder. This special file tells the Android OS that there's no media in the folder which will hide the content from Media pickers.",
+    "author": "jakeisawesome",
+    "authorUrl": "https://obsidian.md",
+    "fundingUrl": "https://obsidian.md/pricing",
+    "isDesktopOnly": false
 }
