@@ -1,4 +1,4 @@
-# Obsidian Nomedia
+# Android nomedia
 This is a short and simple plugin that add a '.nomedia' file to every folder within a vault.
 
 ## Why would you want this?
@@ -8,9 +8,9 @@ This plugin is ideal for those who sync their vaults with their Android Powered 
 This plugin runs on start up and every second after that.
 
 
-# Obsidian.nomedia Disclaimer:
+# Android nomedia Disclaimer:
 
-The Obsidian.nomedia plugin ("the plugin") is provided as-is, without any warranties or guarantees of any kind, expressed or implied. The use of this plugin is at your own risk.
+The Android nomedia plugin ("the plugin") is provided as-is, without any warranties or guarantees of any kind, expressed or implied. The use of this plugin is at your own risk.
 
 The plugin author and contributors shall not be held responsible or liable for any damages, losses, or malfunctions caused by the use of the plugin. This includes, but is not limited to, any direct, indirect, incidental, or consequential damages or losses arising from the use or inability to use the plugin.
 

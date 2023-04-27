@@ -1,11 +1,11 @@
 {
-    "id": "obsidian-nomedia",
-    "name": "Obsidian nomedia",
-    "version": "0.1.0",
-    "minAppVersion": "0.0.1",
-    "description": "This plugin adds the a file with the nomedia extension to every folder. This special file tells the Android OS that there's no media in the folder which will hide the content from Media pickers.",
-    "author": "jakeisawesome",
-    "authorUrl": "https://www.jakeisawesome.com",
-    "fundingUrl": "",
-    "isDesktopOnly": false
+	"id": "android-nomedia",
+	"name": "Android nomedia",
+	"version": "0.1.0",
+	"minAppVersion": "0.0.1",
+	"description": "Hides media from your Vault on Android devices by adding the 'nomedia' file to each folder.",
+	"author": "jakeisawesome",
+	"authorUrl": "https://www.jakeisawesome.com",
+	"fundingUrl": "",
+	"isDesktopOnly": false
 }
