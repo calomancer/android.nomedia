@@ -2,58 +2,46 @@
  * This plugin was developed with the assistance of ChatGPT, a language model created by OpenAI.
  * https://openai.com/
  */
-
-import { Plugin } from 'obsidian';
-import * as path from 'path';
+import { Plugin, TFolder } from 'obsidian';
 
 export default class MyPlugin extends Plugin {
-	private updateTimer: number;
+	private createListener: (abstractFile: any) => void;
 
 	async onload() {
 		console.log('My plugin has loaded!');
+		// Check if a .nomedia file already exists in the vault root
 
-		// Run the plugin when it is first loaded
-		await this.updateFolders();
+		const rootNomediaPath = `${this.app.vault.getRoot().path}/.nomedia`;
+		const rootNomediaExists = await this.app.vault.adapter.exists(rootNomediaPath);
 
-		// Register an interval to check for updates to the folder structure
-		this.updateTimer = window.setInterval(async () => {
-			await this.updateFolders();
-		}, 5000);
+		if (!rootNomediaExists) {
+			this.app.vault.create(rootNomediaPath, '');
+			console.log(`Created .nomedia file in ${this.app.vault.getRoot().path}`);
+		} else {
+			console.log(`.nomedia file already exists in ${this.app.vault.getRoot().path}`);
+		}
+
+		// Create .nomedia files in new folders
+		this.createListener = async (abstractFile) => {
+			if (abstractFile instanceof TFolder) {
+				const folderNomediaPath = `${abstractFile.path}/.nomedia`;
+				const folderNomediaExists = await this.app.vault.adapter.exists(folderNomediaPath);
+				if (!folderNomediaExists) {
+					await this.app.vault.create(folderNomediaPath, '');
+					console.log(`Created .nomedia file in ${abstractFile.path}`);
+				} else {
+					console.log(`.nomedia file already exists in ${abstractFile.path}`);
+				}
+			}
+		};
+
+		// Register the create event listener
+		this.app.vault.on('create', this.createListener);
 	}
 
 	async onunload() {
-		window.clearInterval(this.updateTimer);
-	}
-
-	async updateFolders() {
-		const vault = this.app.vault;
-		const fm = this.app.vault.adapter;
-
-		// Get all the files in the vault
-		const files = vault.getMarkdownFiles();
-
-		// Loop through each file
-		for (const file of files) {
-			// Get the parent directory of the file
-			const dirPath = path.dirname(file.path);
-			if (!dirPath) {
-				console.log(`Unable to find parent folder for file ${file.path}`);
-				continue;
-			}
-
-			const nomediaPath = path.join(dirPath, '.nomedia');
-
-			// Check if the .nomedia file already exists in the directory or its parent
-			if (!await vault.adapter.exists(nomediaPath)) {
-				const parentDirPath = path.dirname(dirPath);
-				const parentNomediaPath = path.join(parentDirPath, '.nomedia');
-				if (!await vault.adapter.exists(parentNomediaPath)) {
-					// If not, create the .nomedia file in the parent directory
-					await vault.create(parentNomediaPath, 'nomedia');
-					await fm.append(path.normalize(parentDirPath), '.nomedia');
-					console.log(`Created ${parentNomediaPath}`);
-				}
-			}
-		}
+		// Unregister the create event listener on plugin unload
+		this.app.vault.off('create', this.createListener);
+		console.log('My plugin has been unloaded!');
 	}
 }
